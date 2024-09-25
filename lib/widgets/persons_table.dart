@@ -12,38 +12,68 @@ class PersonsTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DataTable(
-      columns: const [
-        DataColumn(label: Text('Name')),
-        DataColumn(label: Text('Email')),
-        DataColumn(label: Text('Image')),
-      ],
-      rows: allPersons
-          .map(
-            (person) => DataRow(
-              cells: [
-                DataCell(Text(person.name)),
-                DataCell(Text(person.email)),
-                DataCell(
-                  SizedBox(
-                    width: 40,
-                    height: 40,
-                    child: ClipOval(
-                      child: CachedNetworkImage(
-                        imageUrl: person.imageUrl,
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(),
-                        errorWidget: (context, url, error) =>
-                            Image.asset('assets/images/person.jpg'),
-                        fit: BoxFit.cover,
+    return Card(
+      child: DataTable(
+        dataRowMinHeight: 30,
+        headingRowHeight: 40, 
+        columnSpacing: 200,
+        columns: const [
+          DataColumn(
+            label: Text(
+              'Name',
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+          ),
+          DataColumn(
+            label: Text(
+              'Email',
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+          ),
+          DataColumn(
+            label: Text(
+              'Image',
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
+        rows: allPersons
+            .map(
+              (person) => DataRow(
+                cells: [
+                  DataCell(
+                    Text(
+                      person.name,
+                      style: const TextStyle(fontSize: 12),
+                    ),
+                  ),
+                  DataCell(
+                    Text(
+                      person.email,
+                      style: const TextStyle(fontSize: 12),
+                    ),
+                  ),
+                  DataCell(
+                    SizedBox(
+                      width: 40,
+                      height: 40,
+                      child: ClipOval(
+                        child: CachedNetworkImage(
+                          imageUrl: person.imageUrl,
+                          placeholder: (context, url) =>
+                              const CircularProgressIndicator(strokeWidth: 2),
+                          errorWidget: (context, url, error) =>
+                              Image.asset('assets/images/person.jpg'),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          )
-          .toList(),
+                ],
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 }

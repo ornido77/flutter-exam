@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../models/person_model.dart';
 
 class PersonRepository {
-  final int _limit = 20;
+  final int _limit = 60;
   bool _hasMoreData = true;
 
   Future<List<Person>> fetchPersons() async {

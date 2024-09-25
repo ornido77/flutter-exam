@@ -5,12 +5,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 class PersonListItem extends StatelessWidget {
   final Person person;
-  final int index;
 
   const PersonListItem({
     super.key,
     required this.person,
-    required this.index,
   });
 
   @override
@@ -30,7 +28,7 @@ class PersonListItem extends StatelessWidget {
           ),
         ),
       ),
-      title: Text('${person.name} ${index + 1}'),
+      title: Text(person.name),
       subtitle: Text(person.email),
       onTap: () {
         Navigator.push(

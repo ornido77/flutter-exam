@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 class Person {
   final int id;
   final String name;
@@ -36,7 +35,7 @@ class Person {
       name: json['firstname'] + ' ' + json['lastname'],
       email: json['email'],
       phone: json['phone'],
-      birthDay: json['birthDay'],
+      birthDay: json['birthday'],
       gender: json['gender'],
       address: address,
       website: json['website'],

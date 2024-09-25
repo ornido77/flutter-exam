@@ -16,11 +16,16 @@ class PersonLoading extends PersonState {
 
 class PersonLoaded extends PersonState {
   final List<Person> persons;
+  final int currentPage;
   final bool hasReachedMax;
 
-  const PersonLoaded({required this.persons, required this.hasReachedMax});
+  const PersonLoaded({
+    required this.persons,
+    required this.currentPage,
+    required this.hasReachedMax,
+  });
   @override
-  List<Object> get props => [persons, hasReachedMax];
+  List<Object> get props => [persons, currentPage, hasReachedMax];
 }
 
 class PersonError extends PersonState {
