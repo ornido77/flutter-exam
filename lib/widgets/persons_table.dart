@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_exam/models/person_model.dart';
+import 'package:flutter_exam/pages/person_detail_page.dart';
 
 class PersonsTable extends StatelessWidget {
   const PersonsTable({
@@ -15,7 +16,7 @@ class PersonsTable extends StatelessWidget {
     return Card(
       child: DataTable(
         dataRowMinHeight: 30,
-        headingRowHeight: 40, 
+        headingRowHeight: 40,
         columnSpacing: 200,
         columns: const [
           DataColumn(
@@ -41,19 +42,24 @@ class PersonsTable extends StatelessWidget {
             .map(
               (person) => DataRow(
                 cells: [
-                  DataCell(
+                  _clickableDataCell(
+                    context,
                     Text(
                       person.name,
                       style: const TextStyle(fontSize: 12),
                     ),
+                    person,
                   ),
-                  DataCell(
+                  _clickableDataCell(
+                    context,
                     Text(
                       person.email,
                       style: const TextStyle(fontSize: 12),
                     ),
+                    person,
                   ),
-                  DataCell(
+                  _clickableDataCell(
+                    context,
                     SizedBox(
                       width: 40,
                       height: 40,
@@ -68,11 +74,31 @@ class PersonsTable extends StatelessWidget {
                         ),
                       ),
                     ),
+                    person,
                   ),
                 ],
               ),
             )
             .toList(),
+      ),
+    );
+  }
+
+  DataCell _clickableDataCell(
+      BuildContext context, Widget child, Person person) {
+    return DataCell(
+      InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PersonDetailPage(
+                person: person,
+              ),
+            ),
+          );
+        },
+        child: child,
       ),
     );
   }
